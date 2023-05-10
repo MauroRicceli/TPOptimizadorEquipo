@@ -22,6 +22,7 @@ public class Empleado {
 		}
 	}
 	
+	@Override
 	public boolean equals(Object object) {
 		if(object instanceof Empleado) {
 			Empleado aux = (Empleado) object;
@@ -33,6 +34,11 @@ public class Empleado {
 		} else {
 			return false;
 		}
+	}
+	
+	@Override
+	public String toString() {
+		return _nombre+" siendo un "+_rol+" de la empresa, con una calificacion histórica de "+_calificacionHistorica;
 	}
 	
 	public String getRol() {
