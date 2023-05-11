@@ -18,15 +18,19 @@ public class testEmpresa {
 	
 	@Test
 	public void agregarEmpleadoValido() {
-		_empresaTest.agregarEmpleado("Manuel Rodriguez", 5, "Arquitecto");
+		Empleado empleado = new Empleado("Manuel Rodriguez", 5, "Arquitecto");
+		_empresaTest.agregarEmpleado(empleado);
 		
 		assertEquals(_empresaTest.getEmpleadosPosibles().size(), 1);
 	}
 	
 	@Test
 	public void agregarEmpleadoRepetido() {
-		_empresaTest.agregarEmpleado("Manuel Rodriguez", 5, "Arquitecto");
-		_empresaTest.agregarEmpleado("Manuel Rodriguez", 5, "Arquitecto");
+		Empleado emp1 = new Empleado("Manuel Rodriguez", 5, "Arquitecto");
+		Empleado emp2 = new Empleado("Manuel Rodriguez", 5, "Arquitecto");
+		
+		_empresaTest.agregarEmpleado(emp1);
+		_empresaTest.agregarEmpleado(emp2);
 		
 		assertEquals(_empresaTest.getEmpleadosPosibles().size(), 1);
 	}
