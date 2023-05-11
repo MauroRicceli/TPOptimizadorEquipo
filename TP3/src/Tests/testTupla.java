@@ -27,4 +27,19 @@ public class testTupla {
 		Tupla<Integer, String> aux2 = new Tupla<Integer, String>(1, "Chau");
 		assertNotEquals(aux, aux2);
 	}
+	
+	@Test
+	public void tuplaRevertidaTrue() {
+		Tupla<Integer, String> aux = new Tupla<Integer, String>(1, "Hola");
+		Tupla<String, Integer> aux2 = new Tupla<String, Integer>("Hola", 1);
+		
+		assertEquals(aux.tuplaRevertida(), aux2);
+	}
+	
+	@Test
+	public void tuplaRevertidaFalse() {
+		Tupla<Integer, String> aux = new Tupla<Integer, String>(1, "Hola");
+		
+		assertNotEquals(aux.tuplaRevertida(), aux);
+	}
 }

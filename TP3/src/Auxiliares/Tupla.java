@@ -43,6 +43,12 @@ public class Tupla<A, B> {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
+	public Tupla<A, B> tuplaRevertida() {
+		Tupla<A, B> ret = new Tupla<A, B>((A)_objeto2, (B)_objeto1);
+		return ret;
+	}
+	
 	public A getFirst() {
 		return _objeto1;
 	}

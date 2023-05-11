@@ -1,5 +1,7 @@
 package Auxiliares;
 
+import java.util.Objects;
+
 public class Empleado {
 	private String _rol;
 	private String _nombre;
@@ -26,7 +28,7 @@ public class Empleado {
 	public boolean equals(Object object) {
 		if(object instanceof Empleado) {
 			Empleado aux = (Empleado) object;
-			if(aux.getCalificacion().equals(_calificacionHistorica) && aux.getNombre().equals(_nombre) && aux.getRol().equals(_rol)) {
+			if(aux.getCalificacion().equals(_calificacionHistorica) && aux.getNombre().toLowerCase().equals(_nombre.toLowerCase()) && aux.getRol().toLowerCase().equals(_rol.toLowerCase())) {
 				return true;
 			} else {
 				return false;
@@ -39,6 +41,11 @@ public class Empleado {
 	@Override
 	public String toString() {
 		return _nombre+" siendo un "+_rol+" de la empresa, con una calificacion histórica de "+_calificacionHistorica;
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(_nombre.toLowerCase(), _rol.toLowerCase(), _calificacionHistorica);
 	}
 	
 	public String getRol() {
