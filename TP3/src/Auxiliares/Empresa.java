@@ -43,7 +43,7 @@ public class Empresa {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Empleados Posibles: { \n");
 		for(Empleado emp : _empleadosPosibles) {
-			sb.append(emp.toString()+" \n");
+			sb.append(emp.toString()+" ");
 		}
 		sb.append("} \n Empleados enemistados { \n");
 		for(Tupla<Empleado, Empleado> enemistad : _empleadosEnemistados) {

@@ -40,7 +40,7 @@ public class Empleado {
 	
 	@Override
 	public String toString() {
-		return _nombre+" siendo un "+_rol+" de la empresa con una calificacion histórica de "+_calificacionHistorica;
+		return _nombre+" siendo un "+_rol+" de la empresa con una calificacion histórica de "+_calificacionHistorica+"\n";
 	}
 	
 	@Override

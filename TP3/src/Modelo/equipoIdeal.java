@@ -19,41 +19,68 @@ public class equipoIdeal {
 	
 	public void generarEquipo() {
 		ArrayList<Empleado> solucion = new ArrayList<Empleado>();
-		_equipoIdeal = fuerzaBruta(solucion, 0, 0);
+		fuerzaBruta(solucion, 0, 0);
 	}
 	
-	private ArrayList<Empleado> fuerzaBruta(ArrayList<Empleado> sol, int calificacionParcial, int iterador){
-		if(sol.size() == 12 && calificacionParcial > _calificacionTotal) {
-			_calificacionTotal = calificacionParcial;
-			return sol;
+	//TESTEAR
+	@SuppressWarnings("unchecked")
+	private void fuerzaBruta(ArrayList<Empleado> sol, int calificacionParcial, int iterador){
+		if(sol.size() == 12) {
+			if((calificacionParcial > _calificacionTotal)) {
+				_calificacionTotal = calificacionParcial;
+				_equipoIdeal = (ArrayList<Empleado>) sol.clone();
+				return;
+			} else {
+				return;
+			}
 		}
-		if(iterador == _empresa.getEmpleadosPosibles().size()-1) {
-			return null;
+		
+		if(iterador == _empresa.getEmpleadosPosibles().size()) {
+			return;
 		}
 		
 		Empleado emp = _empresa.getEmpleadosPosibles().get(iterador);
-		if(esPosibleAñadirAlEquipo(emp)) {
+		if(esPosibleAñadirAlEquipo(emp, sol)) {
+			
 			sol.add(emp);
-			return fuerzaBruta(sol, calificacionParcial+emp.getCalificacion(), iterador+1);
+			fuerzaBruta(sol, calificacionParcial+emp.getCalificacion(), iterador+1);
+			
+			sol.remove(emp);
+			fuerzaBruta(sol, calificacionParcial, iterador+1);
+			
+		} else {
+			fuerzaBruta(sol, calificacionParcial, iterador+1);
 		}
-		return null;
-		
 	}
 	
-	private boolean esPosibleAñadirAlEquipo(Empleado empleado) {
-		for(Empleado empleadoIdeal : _equipoIdeal) {
+	private boolean esPosibleAñadirAlEquipo(Empleado empleado, ArrayList<Empleado> solucionParcial) {
+		for(Empleado empleadoIdeal : solucionParcial) {
 			if(_empresa.existeEnemistad(empleado, empleadoIdeal)) {
 				return false;
 			}
 		}
 		int contRol = 0;
-		for(Empleado empleadoIdeal : _equipoIdeal) {
+		for(Empleado empleadoIdeal : solucionParcial) {
 			if(empleadoIdeal.getRol().toLowerCase().equals(empleado.getRol().toLowerCase())) {
 				contRol++;
 			}
 		}
-		if(contRol < 5) {
-			return true;
+		
+		return obtenerLimiteEmpleadoPorEquipo(empleado, contRol);		
+	}
+	
+	private boolean obtenerLimiteEmpleadoPorEquipo(Empleado empleado, Integer contRol) {
+		if(empleado.getRol().toLowerCase().equals("jefe de equipo")) {
+			return contRol < 1;
+		}
+		if(empleado.getRol().toLowerCase().equals("arquitecto")) {
+			return contRol < 2;
+		}
+		if(empleado.getRol().toLowerCase().equals("tester")) {
+			return contRol < 5;
+		}
+		if(empleado.getRol().toLowerCase().equals("programador")) {
+			return contRol < 4;
 		}
 		return false;
 	}
@@ -112,8 +139,6 @@ public class equipoIdeal {
 		_empresa.agregarEnemistad(empleado13, empleado14);
 		_empresa.agregarEnemistad(empleado7, empleado5);
 		_empresa.agregarEnemistad(empleado8, empleado3);
-		
-		System.out.println(_empresa.toString());
 		
 	}
 	

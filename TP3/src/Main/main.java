@@ -10,7 +10,7 @@ public class main {
 		equipoIdeal solver = new equipoIdeal(emp);
 		solver.generarEmpleados();
 		solver.generarEquipo();
-		System.out.println(solver.getEquipoIdeal().toString());
+		System.out.println("\n EQUIPO IDEAL: \n"+solver.getEquipoIdeal().toString());
 	}
 
 }
