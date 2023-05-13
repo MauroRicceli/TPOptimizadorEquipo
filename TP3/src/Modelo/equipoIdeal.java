@@ -11,6 +11,7 @@ public class equipoIdeal {
 	private Integer _calificacionTotal;
 	private Empresa _empresa;
 	private Quartet<Integer, Integer, Integer, Integer> _limiteEmpleados; //<jefe equipo, arquitecto, programador, tester>
+	private Integer _cantEmpleados;
 	
 	
 	public equipoIdeal(Empresa empresa) {
@@ -27,12 +28,13 @@ public class equipoIdeal {
 	public void asignarLimites(Integer jefeEquipos, Integer arquitectos, Integer programadores, Integer testers) {
 		Quartet<Integer, Integer, Integer, Integer> aux = new Quartet<Integer, Integer, Integer, Integer>(jefeEquipos, arquitectos, programadores, testers);
 		_limiteEmpleados = aux;
+		_cantEmpleados = aux.getFirst()+aux.getSecond()+aux.getThird()+aux.getFourth();
 	}
 	
 	//TESTEAR
 	@SuppressWarnings("unchecked")
 	private void fuerzaBruta(ArrayList<Empleado> sol, int calificacionParcial, int iterador){
-		if(sol.size() == 12) {
+		if(sol.size() == _cantEmpleados) {
 			if((calificacionParcial > _calificacionTotal)) {
 				_calificacionTotal = calificacionParcial;
 				_equipoIdeal = (ArrayList<Empleado>) sol.clone();
@@ -55,6 +57,8 @@ public class equipoIdeal {
 			sol.remove(emp);
 			fuerzaBruta(sol, calificacionParcial, iterador+1);
 			
+		} else {
+			fuerzaBruta(sol, calificacionParcial, iterador+1);
 		}
 	}
 	
