@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 import Auxiliares.Empleado;
 import Auxiliares.Empresa;
+import Auxiliares.Quartet;
 
 public class equipoIdeal {
 	private ArrayList<Empleado> _equipoIdeal;
 	private Integer _calificacionTotal;
 	private Empresa _empresa;
+	private Quartet<Integer, Integer, Integer, Integer> _limiteEmpleados; //<jefe equipo, arquitecto, programador, tester>
 	
 	
 	public equipoIdeal(Empresa empresa) {
@@ -20,6 +22,11 @@ public class equipoIdeal {
 	public void generarEquipo() {
 		ArrayList<Empleado> solucion = new ArrayList<Empleado>();
 		fuerzaBruta(solucion, 0, 0);
+	}
+	
+	public void asignarLimites(Integer jefeEquipos, Integer arquitectos, Integer programadores, Integer testers) {
+		Quartet<Integer, Integer, Integer, Integer> aux = new Quartet<Integer, Integer, Integer, Integer>(jefeEquipos, arquitectos, programadores, testers);
+		_limiteEmpleados = aux;
 	}
 	
 	//TESTEAR
@@ -48,8 +55,6 @@ public class equipoIdeal {
 			sol.remove(emp);
 			fuerzaBruta(sol, calificacionParcial, iterador+1);
 			
-		} else {
-			fuerzaBruta(sol, calificacionParcial, iterador+1);
 		}
 	}
 	
@@ -71,16 +76,16 @@ public class equipoIdeal {
 	
 	private boolean obtenerLimiteEmpleadoPorEquipo(Empleado empleado, Integer contRol) {
 		if(empleado.getRol().toLowerCase().equals("jefe de equipo")) {
-			return contRol < 1;
+			return contRol < _limiteEmpleados.getFirst();
 		}
 		if(empleado.getRol().toLowerCase().equals("arquitecto")) {
-			return contRol < 2;
-		}
-		if(empleado.getRol().toLowerCase().equals("tester")) {
-			return contRol < 5;
+			return contRol < _limiteEmpleados.getSecond();
 		}
 		if(empleado.getRol().toLowerCase().equals("programador")) {
-			return contRol < 4;
+			return contRol < _limiteEmpleados.getThird();
+		}
+		if(empleado.getRol().toLowerCase().equals("tester")) {
+			return contRol < _limiteEmpleados.getFourth();
 		}
 		return false;
 	}
