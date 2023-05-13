@@ -6,7 +6,9 @@
     <fullyQualifiedTypeName name="java.util.Objects"/>
     <fullyQualifiedTypeName name="org.junit.Before"/>
     <fullyQualifiedTypeName name="Auxiliares.Empleado"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="Auxiliares.Quartet"/>
     <fullyQualifiedTypeName name="Modelo.equipoIdeal"/>
     <fullyQualifiedTypeName name="Auxiliares.Empresa"/>
+    <fullyQualifiedTypeName name="java.util.Random"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>

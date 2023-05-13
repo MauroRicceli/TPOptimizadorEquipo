@@ -12,6 +12,7 @@ public class main {
 		solver.generarEmpleados();
 		solver.generarEquipo();
 		System.out.println("\n EQUIPO IDEAL: \n"+solver.getEquipoIdeal().toString());
+		//System.out.println(solver.heuristica());
 	}
 
 }

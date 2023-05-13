@@ -1,5 +1,8 @@
 package Auxiliares;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 
 public class Empresa {
@@ -29,6 +32,13 @@ public class Empresa {
 			return true;
 		}
 		return false;
+	}
+	
+	public LinkedList<Empleado> ordenarListaEmpleados(Comparator<Empleado> comparador){
+		LinkedList<Empleado> ret = _empleadosPosibles;
+		Collections.sort(ret, comparador);
+		return ret;
+		
 	}
 	
 	public LinkedList<Empleado> getEmpleadosPosibles(){

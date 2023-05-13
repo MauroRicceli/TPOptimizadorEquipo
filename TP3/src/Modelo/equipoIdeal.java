@@ -1,10 +1,13 @@
 package Modelo;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.LinkedList;
 
 import Auxiliares.Empleado;
 import Auxiliares.Empresa;
 import Auxiliares.Quartet;
+import Auxiliares.comparadorPorCalificacion;
 
 public class equipoIdeal {
 	private ArrayList<Empleado> _equipoIdeal;
@@ -92,6 +95,22 @@ public class equipoIdeal {
 			return contRol < _limiteEmpleados.getFourth();
 		}
 		return false;
+	}
+	
+	public void heuristica() {
+		LinkedList<Empleado> sortedListaEmpleados = _empresa.ordenarListaEmpleados(new comparadorPorCalificacion());
+		ArrayList<Empleado> equipoIdealParcial = new ArrayList<Empleado>();
+		
+		for(Empleado emp : sortedListaEmpleados) {
+			if(equipoIdealParcial.size() == _cantEmpleados) {
+				_equipoIdeal =  equipoIdealParcial;
+				return;
+			}
+			
+			if(esPosibleAñadirAlEquipo(emp, equipoIdealParcial)) {
+				equipoIdealParcial.add(emp);
+			}
+		}
 	}
 	
 	public void generarEmpleados() {
