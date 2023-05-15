@@ -875,6 +875,7 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+<<<<<<< HEAD
 !SESSION 2023-05-15 19:43:42.138 -----------------------------------------------
 eclipse.buildId=4.27.0.20230309-1200
 java.version=17.0.2
@@ -3619,3 +3620,5 @@ org.eclipse.jgit.errors.TransportException: https://github.com/MauroRicceli/TP3.
 
 !ENTRY org.eclipse.egit.ui 4 0 2023-05-15 20:46:12.073
 !MESSAGE Can't connect to any repository: https://github.com/MauroRicceli/TP3.git (https://github.com/MauroRicceli/TP3.git: not authorized)
+=======
+>>>>>>> d58d352c7898396c937b685324640c32e93be939
