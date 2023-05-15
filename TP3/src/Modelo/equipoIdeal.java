@@ -178,5 +178,10 @@ public class equipoIdeal {
 		return _equipoIdeal;
 	}
 
+	public Quartet<Integer, Integer, Integer, Integer> get_limiteEmpleados() {
+		return _limiteEmpleados;
+	}
+	
+
 }
 
