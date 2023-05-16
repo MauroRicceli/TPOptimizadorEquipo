@@ -1,13 +1,12 @@
 package Modelo;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedList;
 
 import Auxiliares.Empleado;
 import Auxiliares.Empresa;
 import Auxiliares.Quartet;
-import Auxiliares.comparadorPorCalificacion;
-import Auxiliares.comparadorPorIncompatibilidad;
 
 public class equipoIdeal {
 	private ArrayList<Empleado> _equipoIdeal;
@@ -118,7 +117,15 @@ public class equipoIdeal {
 	
 	
 	public ArrayList<Empleado> heuristicaPorCalificacion() {
-		LinkedList<Empleado> sortedListaEmpleados = _empresa.ordenarListaEmpleados(new comparadorPorCalificacion());
+		LinkedList<Empleado> sortedListaEmpleados = _empresa.ordenarListaEmpleados(new Comparator<Empleado>() {
+			
+			@Override
+			public int compare(Empleado o1, Empleado o2) {
+				return o2.getCalificacion() - o1.getCalificacion();
+			}
+			
+		});
+		
 		ArrayList<Empleado> equipoIdealParcial = new ArrayList<Empleado>();
 		
 		for(Empleado emp : sortedListaEmpleados) {
@@ -135,7 +142,15 @@ public class equipoIdeal {
 	
 	public ArrayList<Empleado> heuristicaPorIncompatibilidad() {
 		
-		LinkedList<Empleado> sortedListaEmpleados = _empresa.ordenarListaEmpleados(new comparadorPorIncompatibilidad());
+		LinkedList<Empleado> sortedListaEmpleados = _empresa.ordenarListaEmpleados(new Comparator<Empleado>() {
+
+			@Override //-1 menor, 0 igual, 1 mayor
+			public int compare(Empleado emp1, Empleado emp2) {
+				return emp1.getCantEnemigos() - emp2.getCantEnemigos();
+			}
+			
+		});
+		
 		ArrayList<Empleado> equipoIdealParcial = new ArrayList<Empleado>();
 		
 		for(Empleado emp : sortedListaEmpleados) {
