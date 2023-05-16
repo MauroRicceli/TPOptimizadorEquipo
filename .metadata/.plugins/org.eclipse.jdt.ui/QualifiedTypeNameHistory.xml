@@ -10,5 +10,8 @@
     <fullyQualifiedTypeName name="Modelo.equipoIdeal"/>
     <fullyQualifiedTypeName name="Auxiliares.Empresa"/>
     <fullyQualifiedTypeName name="java.util.Random"/>
+    <fullyQualifiedTypeName name="javax.swing.JComboBox"/>
+    <fullyQualifiedTypeName name="java.util.Comparator"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="Auxiliares.comparadorPorIncompatibilidad"/>
 </qualifiedTypeNameHistroy>
